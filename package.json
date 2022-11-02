@@ -1,0 +1,8 @@
+{
+  "dependencies": {
+    "array-intersection": "^0.1.2",
+    "iterate-tree": "^2.0.1",
+    "makerjs": "^0.17.1",
+    "point-in-svg-path": "^1.0.2"
+  }
+}

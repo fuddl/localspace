@@ -1,0 +1,69 @@
+[
+  {
+    "id": "ori",
+    "color": "#9EAB8C",
+    "tags": ["orion homeword"],
+    "size": {
+      "depth": 7,
+      "width": 2
+    }
+  },
+  {
+    "id": "fed",
+    "color": "teal",
+    "tags": ["federation starbase", "federation member", "federation colony"]
+  },
+  {
+    "id": "tze",
+    "color": "darkturquoise",
+    "tags": ["tzenketh homeword"]
+  },
+  {
+    "id": "fer",
+    "color": "gold",
+    "tags": ["claimed by ferengi aliance"],
+    "size": {
+      "depth": 7,
+      "width": 2
+    }
+  },
+  {
+    "id": "car",
+    "color": "#D2CAA0",
+    "tags": ["cardassian starbase", "claimed by cardassian union"]
+  },
+  {
+    "id": "rom",
+    "color": "green",
+    "tags": ["romulan starbase", "claimed by romulan empire", "romulan capital"],
+    "size": {
+      "depth": 7,
+      "width": 3
+    }
+  },
+  {
+    "id": "kli",
+    "color": "#C56921",
+   "tags": ["klingon starbase", "claimed by klingon empire"]
+  },
+  {
+    "id": "bre",
+    "color": "darkslategray",
+    "tags": ["claimed by breen confederacy"]
+  },
+  {
+    "id": "tho",
+    "color": "yellow",
+    "tags": ["claimed by tholian assembly"]
+  },
+  {
+    "id": "gor",
+    "color": "olivedrab",
+    "tags": ["claimed by gorn"]
+  },
+  {
+    "id": "tam",
+    "color": "tan",
+    "tags": ["talarian homeword"]
+  }
+]
