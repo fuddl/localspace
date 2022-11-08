@@ -2,16 +2,18 @@
   {
     "id": "ori",
     "color": "#9EAB8C",
-    "tags": ["orion homeword"],
+    "tags": ["orion homeword", "orion colony"],
     "size": {
       "depth": 7,
-      "width": 2
+      "width": 2,
+      "cell": 40,
+      "aura": 4
     }
   },
   {
     "id": "fed",
     "color": "teal",
-    "tags": ["federation starbase", "federation member", "federation colony"]
+    "tags": ["federation starbase", "federation member", "federation colony", "federation founding member", "earth colony", "federation outpost"]
   },
   {
     "id": "tze",
@@ -30,7 +32,11 @@
   {
     "id": "car",
     "color": "#D2CAA0",
-    "tags": ["cardassian starbase", "claimed by cardassian union"]
+    "tags": ["cardassian starbase", "claimed by cardassian union"],
+    "size": {
+      "cell": 45,
+      "aura": 4
+    }
   },
   {
     "id": "rom",
@@ -38,13 +44,19 @@
     "tags": ["romulan starbase", "claimed by romulan empire", "romulan capital"],
     "size": {
       "depth": 7,
-      "width": 3
+      "width": 3,
+      "cell": 45,
+      "aura": 4
     }
   },
   {
     "id": "kli",
     "color": "#C56921",
-   "tags": ["klingon starbase", "claimed by klingon empire"]
+    "tags": ["klingon starbase", "claimed by klingon empire", "klingon colony"],
+    "size": {
+      "cell": 92,
+      "aura": 9
+    }
   },
   {
     "id": "bre",
@@ -65,5 +77,16 @@
     "id": "tam",
     "color": "tan",
     "tags": ["talarian homeword"]
+  },
+  {
+    "id": "first",
+    "color": "yellow",
+    "tags": ["claimed by first federation"]
+  },
+  {
+    "id": "neutral",
+    "color": "white",
+    "tags": ["inhabited"],
+    "size": false
   }
 ]
