@@ -86,7 +86,7 @@
   {
     "id": "neutral",
     "color": "white",
-    "tags": ["inhabited"],
+    "tags": ["inhabited", "local space"],
     "size": false
   }
 ]

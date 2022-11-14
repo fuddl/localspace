@@ -68,7 +68,7 @@ function evenGrid(cx, cy, rings, area, divisor, outputCells = false) {
           r="${ r }"
           cx="${ cx }"
           cy="${ cy }"
-          stroke="silver"
+          stroke="DimGray"
           stroke-width=".1"
         />
       `)
@@ -88,7 +88,7 @@ function evenGrid(cx, cy, rings, area, divisor, outputCells = false) {
           y1="${radialStart[key][1]}"
           x2="${radialEnd[key][0]}"
           y2="${radialEnd[key][1]}"
-          stroke="silver"
+          stroke="DimGray"
           stroke-width=".1"
         />
     `);
@@ -211,6 +211,8 @@ function circlePath(cx, cy, r) {
   return  d.join(' ');
 }
 
+let printedIds = []
+
 for (const key in groups) {
   groups[key].shape = [];
 
@@ -226,7 +228,7 @@ for (const key in groups) {
   }, true) : null;
 
   iterator.bfs([...catalog], 'orbits', (entry) => {
-    if (entry?.location?.x && !entry?.printed) {
+    if (entry?.location?.x && !printedIds.includes(entry.id)) {
       if (entry?.tags && intersection(groups[key].tags, entry.tags).length > 0) {
         let coordinates = {
           x: (entry.location.x) - center.x,
@@ -238,7 +240,7 @@ for (const key in groups) {
           color: groups[key].color,
           big: intersection(entry?.tags, ['notable']).length > 0,
         })
-        entry.printed = true
+        printedIds.push(entry.id)
         if (cells != null) {
           for (let cell of cells) {
             let aura = groups?.[key]?.size?.aura ?? 8
@@ -259,7 +261,7 @@ for (const key in groups) {
 }
 
 fs.writeFileSync('localspace.svg', `
-  <svg viewBox="-${size / 2} -${size / 2} ${size} ${size}" width="${size}" height="${size}" xmlns="http://www.w3.org/2000/svg">
+  <svg viewBox="-${size / 2} -${size / 2} ${size} ${size}" width="${size * 2}" height="${size * 2}" xmlns="http://www.w3.org/2000/svg">
     <defs>
       <style>
         @font-face {
@@ -270,10 +272,20 @@ fs.writeFileSync('localspace.svg', `
           text-transform: uppercase;
         }
       </style>
+      <filter xmlns="http://www.w3.org/2000/svg" id="round">
+        <feGaussianBlur in="SourceGraphic" stdDeviation="1" result="blur"/>
+        <feColorMatrix in="blur" mode="matrix" values="1 0 0 0 0 0 1 0 0 0 0 0 1 0 0 0 0 0 19 -9" result="goo"/>
+        <feComposite in="SourceGraphic" in2="goo" operator="atop" out="foo"/>
+
+        <feGaussianBlur in="foo" stdDeviation="1" result="blur" out="baz"/>
+        <feComposite in="foo" in2="bar" operator="xor" result="9454959d-9d9a-4c91-8ec7-30cb17d9ce9e"/>
+        <feColorMatrix in="454959d-9d9a-4c91-8ec7-30cb17d9ce9e" mode="matrix" values="1 0 0 0 0 0 1 0 0 0 0 0 1 0 0 0 0 0 19 -9" result="goo"/>
+      </filter>
     </defs>
 
     <rect x="-${size / 2}" y="-${size / 2}" width="${size}" height="${size}" fill="black" />
     <image href="arm.png" x="-${size / 2}" y="-${size / 2}" width="${size}" height="${size}" opacity=".66" />
+    ${ grid }
     ${groups.map((group) => `
       <defs>
         <filter id="glow-${group.id}">
@@ -289,7 +301,7 @@ fs.writeFileSync('localspace.svg', `
       <!--
         <circle cx="${point.coords.x}" cy="${point.coords.y}" r="${point.big ? '1' : '.25'}" fill="${point.color}" ${point.big ? '' : 'opacity=".5"'} />
       -->
-      ${ point?.label ? `<text
+      ${ point?.label && !point.label.startsWith('FGC') ? `<text
                             transform-origin="${point.coords.x} ${point.coords.y}"
                             x="${point.coords.x}"
                             y="${point.coords.y}"
